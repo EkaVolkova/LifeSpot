@@ -37,6 +37,7 @@ footer {
     right: 1%;
     font-size: medium;
     color: dimgrey;
+    line-height: 66%
 }
 aside {
     height: 100%; /* Высота в полный размер. Этот параметр можно убрать, если вы хотите выставлять высоту автоматически */
