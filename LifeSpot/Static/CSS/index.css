@@ -8,9 +8,9 @@
    color: darkgray;
    
 }
-.navbar a{
-    text-decoration-line: none;
-    color: whitesmoke;
+.navbar a {
+        text-decoration-line: none;
+        color: floralwhite;
 }
 .navbar p {
         padding-left: 15%;
@@ -19,24 +19,24 @@
         
 
 }
-.navbar p:hover {
-        background: radial-gradient(gray, black);
-}
+    .navbar p:hover {
+        background: radial-gradient(#B4A89A, #2A0E17);
+    }
 /*Глобальные стили для хедеров на всём сайте*/
 header {
     color: black;
     padding-left: 1%;
     padding-top: 1.2%;
 }
-#main-header{
-    color: darkslategray;
+#main-header {
+    color: #2A0E17;
 }
 footer {
     position: fixed;
     bottom: 0;
     right: 1%;
     font-size: medium;
-    color: dimgrey;
+    color: #69565C;
     line-height: 66%
 }
 aside {
@@ -46,11 +46,12 @@ aside {
     z-index: 1; /* Сайд-бар будет поверх остальных элементов */
     top: 0; /* Сайдбар будет в самой верхней части страницы */
     left: 0;
-    background-color: #111; /* Черный цвет фона (задан в виде кода) */
+    background-color: #2A0E17; /* Черный цвет фона (задан в виде кода) */
     overflow-x: hidden; /* Отключаем горизонтальную прокрутку */
     padding-top: 2%;
     font-size: large;
 }
 body{
    padding-left: 16%;
+   background-color: floralwhite;
 }
