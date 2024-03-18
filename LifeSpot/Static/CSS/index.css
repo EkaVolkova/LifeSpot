@@ -1,41 +1,53 @@
-﻿/* Свойства стиля элемента. Подробнее о них в модуле по CSS */
-.block {
-    border: 2px solid black;
-    background-color: azure;
-    padding: 10px;
+﻿/* Простые селекторы*/
+.video-container{
+   display: inline-block;
+   padding-left: 1%;
+   padding-top: 1%;
 }
-
-.video-container {
-    display: inline-block;
-    padding-left: 1%;
+.navbar{
+   color: darkgray;
+   
 }
-
-.navbar {
-    color: darkgray;
-    padding-left: 15%;
+.navbar a{
+    text-decoration-line: none;
+    color: whitesmoke;
 }
+.navbar p {
+        padding-left: 15%;
+        padding-bottom: 2%;
+        padding-top: 2%;
+        
 
+}
+.navbar p:hover {
+        background: radial-gradient(gray, black);
+}
+/*Глобальные стили для хедеров на всём сайте*/
 header {
-    padding-left: 11%;
+    color: black;
+    padding-left: 1%;
+    padding-top: 1.2%;
 }
-
-main {
-    padding-left: 11%;
 }
-
 footer {
-    position: relative;
-    padding-left: 11%;
+    position: fixed;
+    bottom: 0;
+    right: 1%;
+    font-size: medium;
+    color: dimgrey;
 }
-
 aside {
     height: 100%; /* Высота в полный размер. Этот параметр можно убрать, если вы хотите выставлять высоту автоматически */
-    width: 10%;
-    position: absolute; /* Фиксированная позиция сайд-бара. Так он будет оставаться на месте при скроллинге */
+    width: 15%;
+    position: fixed; /* Фиксированная позиция сайд-бара. Так он будет оставаться на месте при скроллинге */
     z-index: 1; /* Сайд-бар будет поверх остальных элементов */
     top: 0; /* Сайдбар будет в самой верхней части страницы */
     left: 0;
     background-color: #111; /* Черный цвет фона (задан в виде кода) */
     overflow-x: hidden; /* Отключаем горизонтальную прокрутку */
-    padding-top: 20px;
+    padding-top: 2%;
+    font-size: large;
+}
+body{
+   padding-left: 16%;
 }
