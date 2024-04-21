@@ -20,16 +20,11 @@
         window.location.href = "http://www.google.com";
     }
 }
+
 /*
  * Функция фильтрации
  */
-function FilterContent() {
-    //Находим на главной странице элемент input
-    let elements = document.getElementsByTagName('input');
-    let element = elements[0];
-
-    //Получем его значение (введенный текст)
-    let elementText = element.value;
+function FilterContent(filterText) {
 
     //Получаем список всех видео на странице
     let videos = document.getElementsByClassName('video-container');
@@ -38,7 +33,7 @@ function FilterContent() {
     for (var i = 0; i < videos.length; i++) {
         //Проверяем, есть ли в названии видео символы, введенные пользователем, если есть - делаем элемент видимым, если нет - невидимым
         let videoName = videos[i].getElementsByClassName('video-title')[0].innerHTML;
-        if (videoName.toLowerCase().includes(elementText.toLowerCase()))
+        if (videoName.toLowerCase().includes(filterText.toLowerCase()))
             videos[i].style.display = 'inline-block';
         else
             videos[i].style.display = 'none';
