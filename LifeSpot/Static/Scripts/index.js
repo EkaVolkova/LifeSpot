@@ -1,7 +1,12 @@
-﻿let age = prompt("Пожалуйста, введите ваш возраст");
-if (age >= 18) {
-    alert(`Приветствуем на LifeSpot! ` +
-        new Date().toLocaleString());
+﻿let session = new Map();
+
+session.set("userAgent", window.navigator.userAgent);
+
+session.set("age", prompt("Пожалуйста, введите ваш возраст"));
+session.set("date", new Date().toLocaleString());
+
+if (session.get("age") >= 18) {
+    alert(`Приветствуем на LifeSpot! ` + session.get("date"));
 }
 else {
     alert("Сайт предназначен для совершеннолетних!");
