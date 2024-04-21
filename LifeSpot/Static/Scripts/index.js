@@ -40,7 +40,7 @@ function HandleSession() {
 /**
  * функция получения введенного пользователем текста
  */
-function GetInputData() {
+const inputParseFunction = function (){
     return document.getElementsByTagName('input')[0].value.toLocaleLowerCase();
 }
 
@@ -48,9 +48,8 @@ function GetInputData() {
  * Функция фильтрации
  * @param {any} getData функция получения введенного пользователем текста
  */
-function FilterContent(getData) {
+function FilterContent() {
 
-    let filterText = getData();
 
     //Получаем список всех видео на странице
     let videos = document.getElementsByClassName('video-container');
@@ -59,7 +58,7 @@ function FilterContent(getData) {
     for (var i = 0; i < videos.length; i++) {
         //Проверяем, есть ли в названии видео символы, введенные пользователем, если есть - делаем элемент видимым, если нет - невидимым
         let videoName = videos[i].getElementsByClassName('video-title')[0].innerHTML;
-        if (videoName.toLowerCase().includes(filterText))
+        if (videoName.toLowerCase().includes(inputParseFunction()))
             videos[i].style.display = 'inline-block';
         else
             videos[i].style.display = 'none';
