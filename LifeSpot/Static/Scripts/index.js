@@ -68,3 +68,6 @@ function FilterContent() {
             videos[i].style.display = 'none';
     }
 }
+
+
+setTimeout(() => { alert("Подпишитесь на наш инстаграмм!")}, 60000);
