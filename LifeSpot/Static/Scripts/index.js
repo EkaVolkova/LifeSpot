@@ -1,4 +1,19 @@
-﻿function HandleSession() {
+﻿/**
+ * Логирует информацию о сессии в консоль
+ * Метод объявления - Function Expression
+ * @param {any} session массив данных о сессии
+ */
+const sessionLog = function (session) {
+    for (let item of session) {
+        console.log(item);
+    }
+}
+/**
+ * Подготавливает сайт к запуску:
+ *      получает данные о текущей сессии
+ *      проверяет возраст
+ */
+function HandleSession() {
     //Создадим массив для хранения информации о текущей сессии
     let session = new Map();
 
@@ -10,7 +25,7 @@
 
     //Добавим текущие дату и время
     session.set("date", new Date().toLocaleString());
-
+    
     //Проверим, можно ли пользователю посетить сайт
     if (session.get("age") >= 18) {
         alert(`Приветствуем на LifeSpot! ` + session.get("date"));
@@ -19,6 +34,7 @@
         alert("Сайт предназначен для совершеннолетних!");
         window.location.href = "http://www.google.com";
     }
+    return session;
 }
 
 /*
