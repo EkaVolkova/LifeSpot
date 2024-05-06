@@ -1,25 +1,22 @@
-﻿let session = {
-    startDate: new Date().toLocaleString(),
-    userAgent: window.navigator.userAgent,
-    userAge: prompt("Пожалуйста, введите ваш возраст?")
-}
+﻿
 /**
  * Логирует информацию о сессии в консоль
  * Метод объявления - Function Expression
  */
 const sessionLog = function () {
-    console.log('Начало сессии: ' + session.startDate)
-    console.log('Даныне клиента: ' + session.userAgent)
-    console.log('Возраст пользователя: : ' + session.userAge)
+    console.log('Начало сессии: ' + window.sessionStorage.getItem("startDate"));
+    console.log('Даныне клиента: ' + window.sessionStorage.getItem("userAgent"));
+    console.log('Возраст пользователя: : ' + window.sessionStorage.getItem("userAge"));
 
 }
 /**
  *  Функция провки возраста пользователя
 */
-function CheckAge() {
+function CheckAge(newVisit) {
     //Проверим, можно ли пользователю посетить сайт
-    if (session.userAge >= 18) {
-        alert(`Приветствуем на LifeSpot! ` + session.startDate);
+    if (window.sessionStorage.getItem("userAge") >= 18) {
+        if (newVisit)
+            alert(`Приветствуем на LifeSpot! ` + window.sessionStorage.getItem("startDate"));
     }
     else {
         alert("Сайт предназначен для совершеннолетних!");
@@ -30,20 +27,31 @@ function CheckAge() {
 /**
  * Подготавливает сайт к запуску:
  *      получает данные о текущей сессии
+ * @param {any} checker функция проверки данных
  */
-//function HandleSession() {
-//    //Создадим массив для хранения информации о текущей сессии
-
-//    //Добавим данные о клиенте
-//    session.set("userAgent", window.navigator.userAgent);
-
-//    //Добавим данные о фозрасте пользователя (через запрос)
-//    session.set("age", prompt("Пожалуйста, введите ваш возраст"));
-
-//    //Добавим текущие дату и время
-//    session.set("date", new Date().toLocaleString());
+function HandleSession(checker, logger) {
+    //Создадим массив для хранения информации о текущей сессии
     
-//}
+    //Добавим текущие дату и время
+    if (window.sessionStorage.getItem("startDate") == null)
+        window.sessionStorage.setItem("startDate", new Date().toLocaleString());
+
+    //Добавим данные о клиенте
+    if (window.sessionStorage.getItem("userAgent") == null)
+        window.sessionStorage.setItem("userAgent", window.navigator.userAgent);
+
+    //Добавим данные о фозрасте пользователя (через запрос)
+    if (window.sessionStorage.getItem("userAge") == null) {
+        window.sessionStorage.setItem("userAge", prompt("Пожалуйста, введите ваш возраст"));
+        checker(true);
+    }
+    else {
+        checker(false);
+    }
+
+    logger();
+    
+}
 
 /**
  * функция получения введенного пользователем текста
