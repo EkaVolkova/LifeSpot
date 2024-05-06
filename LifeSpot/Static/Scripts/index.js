@@ -1,21 +1,25 @@
-﻿let session = new Map();
-
+﻿let session = {
+    startDate: new Date().toLocaleString(),
+    userAgent: window.navigator.userAgent,
+    userAge: prompt("Пожалуйста, введите ваш возраст?")
+}
 /**
  * Логирует информацию о сессии в консоль
  * Метод объявления - Function Expression
  */
 const sessionLog = function () {
-    for (let item of session) {
-        console.log(item);
-    }
+    console.log('Начало сессии: ' + session.startDate)
+    console.log('Даныне клиента: ' + session.userAgent)
+    console.log('Возраст пользователя: : ' + session.userAge)
+
 }
 /**
  *  Функция провки возраста пользователя
 */
 function CheckAge() {
     //Проверим, можно ли пользователю посетить сайт
-    if (session.get("age") >= 18) {
-        alert(`Приветствуем на LifeSpot! ` + session.get("date"));
+    if (session.userAge >= 18) {
+        alert(`Приветствуем на LifeSpot! ` + session.startDate);
     }
     else {
         alert("Сайт предназначен для совершеннолетних!");
@@ -27,19 +31,19 @@ function CheckAge() {
  * Подготавливает сайт к запуску:
  *      получает данные о текущей сессии
  */
-function HandleSession() {
-    //Создадим массив для хранения информации о текущей сессии
+//function HandleSession() {
+//    //Создадим массив для хранения информации о текущей сессии
 
-    //Добавим данные о клиенте
-    session.set("userAgent", window.navigator.userAgent);
+//    //Добавим данные о клиенте
+//    session.set("userAgent", window.navigator.userAgent);
 
-    //Добавим данные о фозрасте пользователя (через запрос)
-    session.set("age", prompt("Пожалуйста, введите ваш возраст"));
+//    //Добавим данные о фозрасте пользователя (через запрос)
+//    session.set("age", prompt("Пожалуйста, введите ваш возраст"));
 
-    //Добавим текущие дату и время
-    session.set("date", new Date().toLocaleString());
+//    //Добавим текущие дату и время
+//    session.set("date", new Date().toLocaleString());
     
-}
+//}
 
 /**
  * функция получения введенного пользователем текста
