@@ -4,11 +4,15 @@
  */
 const publicReview = (review) => {
 
+    let rate = "";
+    if (review.hasOwnProperty('rate')) {
+        rate = `<p class="rewiew-rate">Оценка: ${review.rate}</p>`;
+    }
     //Формируем текст отзыва
     let addedReview = `<div class="review-data">
-<div> <a class="user-name">user: ${review["name"]}</a> <a class="review-date">${review["data"]}</a></div>
-<p class="rewiew-comment">${review["comment"]}</p></div>`;
-
+<div> <a class="user-name">user: ${review.name}</a> <a class="review-date">${review.date}</a></div>
+<p class="rewiew-comment">${review.comment}</p>${rate}</div >`;
+    
     //Получаем текущий список отзывов
     let reviews = document.getElementsByClassName('reviews-data')[0];
 
@@ -23,26 +27,38 @@ const publicReview = (review) => {
  */
 function addReview() {
     //Создаем массив для отзыва
-    let review = new Map();
+    let comment = new Object();
 
     //Считываем имя пользователя
-    review["name"] = prompt("Введите свое имя");
+    comment.name = prompt("Введите свое имя");
     
     //Проверяем, что имя пользователя не пустая строка
-    if (review["name"] === null || review["name"].length === 0)
+    if (comment.name === null || comment.name.length === 0)
         return;
 
     //Считываем комментарий пользователя
-    review["comment"] = prompt("Введите отзыв");
+    comment.comment = prompt("Введите отзыв");
 
     //Проверяем, что комментарий пользователя не пустая строка
-    if (review["comment"] === null || review["comment"].length === 0)
+    if (comment.comment === null || comment.comment.length === 0)
         return;
 
     //Считываем текущие дату и время
-    review["data"] = new Date().toLocaleString();
+    comment.date = new Date().toLocaleString();
 
-    //публикуем отзыв
-    publicReview(review);
-    
+    //Проверяем, нужен ли пользователю рейтинг 
+    const isRewiew = confirm("Хотите получать оценки от других пользователей");
+    console.log(isRewiew);
+    if (isRewiew) {
+        console.log("Отзыв");
+        let rewiew = Object.create(comment);
+        rewiew.rate = 0;
+        publicReview(rewiew);
+    }
+    else {
+        console.log("Коммент");
+
+        //публикуем отзыв
+        publicReview(comment);
+    }
 }
