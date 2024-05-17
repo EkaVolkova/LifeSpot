@@ -22,30 +22,48 @@ const publicReview = (review) => {
     else
         reviews.innerHTML += addedReview;
 }
+
+/**
+ * Функция-корнструктор для комментария
+ * */
+function Comment() {
+
+    //Считываем имя пользователя
+    let name = prompt("Введите свое имя");
+
+    //Проверяем, что имя пользователя не пустая строка
+    if (name === null || name.length === 0) {
+        this.empty = true;
+        return;
+    }
+    this.name = name;
+
+    //Считываем комментарий пользователя
+    let comment = prompt("Введите отзыв");
+
+    //Проверяем, что комментарий пользователя не пустая строка
+    if (comment === null || comment.length === 0) {
+        this.empty = true;
+        return;
+    }
+
+    this.comment = comment;
+
+    //Считываем текущие дату и время
+    this.date = new Date().toLocaleString();
+    this.empty = false;
+}
 /**
  * Функция добавления отзыва
  */
 function addReview() {
     //Создаем массив для отзыва
-    let comment = new Object();
+    let comment = new Comment();
 
-    //Считываем имя пользователя
-    comment.name = prompt("Введите свое имя");
-    
-    //Проверяем, что имя пользователя не пустая строка
-    if (comment.name === null || comment.name.length === 0)
+    // проверяем, успешно ли юзер осуществил ввод
+    if (comment.empty) {
         return;
-
-    //Считываем комментарий пользователя
-    comment.comment = prompt("Введите отзыв");
-
-    //Проверяем, что комментарий пользователя не пустая строка
-    if (comment.comment === null || comment.comment.length === 0)
-        return;
-
-    //Считываем текущие дату и время
-    comment.date = new Date().toLocaleString();
-
+    }
     //Проверяем, нужен ли пользователю рейтинг 
     const isRewiew = confirm("Хотите получать оценки от других пользователей");
     console.log(isRewiew);
