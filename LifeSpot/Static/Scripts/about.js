@@ -3,8 +3,19 @@
  * @param {any} id
  */
 function addLike(id) {
+
+    //Получаем кнопку по id
     let button = document.getElementById(id);
-    button.innerHTML = `❤️ ${Number(button.innerHTML.split(' ')[1]) + 1}`;
+
+    //Достаем полезную информацию
+    arrayButton = button.innerHTML.split(' ');
+
+    //Прибавляем лайк
+    res = parseInt(arrayButton[1]) + 1;
+
+    //Собираем кнопку обратно
+    arrayButton[1] = `${res}`;
+    button.innerHTML = arrayButton.join(' ');
 }
 /**
  * Стрелочная функция добавления отзыва на сайт
