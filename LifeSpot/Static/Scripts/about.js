@@ -1,4 +1,12 @@
 ﻿/**
+ * Функция увеличения рейтинга 
+ * @param {any} id
+ */
+function addLike(id) {
+    let button = document.getElementById(id);
+    button.innerHTML = `❤️ ${Number(button.innerHTML.split(' ')[1]) + 1}`;
+}
+/**
  * Стрелочная функция добавления отзыва на сайт
  * @param {any} review массив данных об отзыве
  */
@@ -6,7 +14,8 @@ const publicReview = (review) => {
 
     let rate = "";
     if (review.hasOwnProperty('rate')) {
-        rate = `<p class="rewiew-rate">Оценка: ${review.rate}</p>`;
+        const id = Math.random();
+        rate = `<button id=${id} onClick="addLike(id)" class="rewiew-rate">❤️ ${review.rate}</button>`;
     }
     //Формируем текст отзыва
     let addedReview = `<div class="review-data">
