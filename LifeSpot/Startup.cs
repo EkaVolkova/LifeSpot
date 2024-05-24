@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.FileProviders;
 
 namespace LifeSpot
 {
@@ -14,6 +15,19 @@ namespace LifeSpot
     /// </summary>
     public static class EndpointMapper
     {
+
+        /// <summary>
+        /// Функция маппинга для jpeg и png файлов
+        /// </summary>
+        /// <param name="app"></param>
+        public static void MapImage(IApplicationBuilder app)
+        {
+            app.UseStaticFiles(new StaticFileOptions
+            {
+                FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "Static", "Image")),
+                RequestPath = "/Static/Image"
+            }) ;
+        }
         /// <summary>
         ///  Маппинг CSS-файлов
         /// </summary>
@@ -37,7 +51,7 @@ namespace LifeSpot
         /// </summary>
         public static void MapJs(this IEndpointRouteBuilder builder)
         {
-            var jsFiles = new[] { "index.js", "testing.js", "about.js" };
+            var jsFiles = new[] { "index.js", "testing.js", "about.js", "slider.js" };
 
             foreach (var fileName in jsFiles)
             {
@@ -57,6 +71,7 @@ namespace LifeSpot
         {
             string footerHtml = File.ReadAllText(Path.Combine(Directory.GetCurrentDirectory(), "Views", "Shared", "footer.html"));
             string sideBarHtml = File.ReadAllText(Path.Combine(Directory.GetCurrentDirectory(), "Views", "Shared", "sidebar.html"));
+            string sliderHtml = File.ReadAllText(Path.Combine(Directory.GetCurrentDirectory(), "Views", "Shared", "slider.html"));
 
             builder.MapGet("/", async context =>
             {
@@ -66,6 +81,7 @@ namespace LifeSpot
                 // Загружаем шаблон страницы, вставляя в него элементы
                 var html = new StringBuilder(await File.ReadAllTextAsync(viewPath))
                     .Replace("<!--SIDEBAR-->", sideBarHtml)
+                    .Replace("<!--SLIDER-->", sliderHtml)
                     .Replace("<!--FOOTER-->", footerHtml);
 
                 await context.Response.WriteAsync(html.ToString());
@@ -78,6 +94,7 @@ namespace LifeSpot
                 // Загружаем шаблон страницы, вставляя в него элементы
                 var html = new StringBuilder(await File.ReadAllTextAsync(viewPath))
                     .Replace("<!--SIDEBAR-->", sideBarHtml)
+                    .Replace("<!--SLIDER-->", sliderHtml)
                     .Replace("<!--FOOTER-->", footerHtml);
 
                 await context.Response.WriteAsync(html.ToString());
@@ -90,6 +107,7 @@ namespace LifeSpot
                 // Загружаем шаблон страницы, вставляя в него элементы
                 var html = new StringBuilder(await File.ReadAllTextAsync(viewPath))
                     .Replace("<!--SIDEBAR-->", sideBarHtml)
+                    .Replace("<!--SLIDER-->", sliderHtml)
                     .Replace("<!--FOOTER-->", footerHtml);
 
                 await context.Response.WriteAsync(html.ToString());
@@ -117,6 +135,7 @@ namespace LifeSpot
                 endpoints.MapCss();
                 endpoints.MapJs();
                 endpoints.MapHtml();
+                EndpointMapper.MapImage(app);
             });
         }
     }
