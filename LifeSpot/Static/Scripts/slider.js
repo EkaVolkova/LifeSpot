@@ -26,8 +26,12 @@ function stopMove() {
 function makeMove() {
     if (prevEvent != null && prevEvent.type === 'mousedown') {
 
+        slider = document.getElementsByClassName('slider-list')[0];
 
         const endPosition = event.clientX;
+        const oldPosition = slider.style.transform;
+        console.log(oldPosition)
+        let newPosition = endPosition;
 
         if (startPosition < endPosition) {
             console.log('Left');
